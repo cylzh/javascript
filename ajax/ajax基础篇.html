@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //jsonp 原理
+        function addScriptTag(src){
+            var script=document.createElement("script");
+            script.setAttribute("type","text/javascript");
+            script.src = src;
+            document.body.appendChild(script);
+        }
+
+
+       // addScriptTag("http://example.com/ip?callback=foo");
+
+//        function foo(data) {
+//            console.log('Your public IP address is: ' + data.ip);
+//        };
+    </script>
+
+
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../test/test.html",true);
+        xhr.send();
+
+
+//        var xhr1 = new XMLHttpRequest();
+//        xhr1.open("GET", "http://segmentfault.com/u/trigkit4/",true);
+//        xhr1.send();
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        function dosomething(jsondata){
+            //处理获得的json数据
+        }
+    </script>
+    <script src="http://example.com/data.php?callback=dosomething"></script>
+</body>
+</html>
