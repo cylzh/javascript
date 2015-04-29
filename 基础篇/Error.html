@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+
+        //throw会进行隐式转换
+        // throw [1,2,3]
+        //throw {toString: function() { return "Error!"; } };
+        function throwit() {
+            throw new Error('');
+        }
+
+        function catchit() {
+            try {
+                throwit();
+            } catch(e) {
+                console.log(e.stack); // print stack trace
+            }
+        }
+
+        catchit()
+
+        //6种错误
+
+        //SyntaxError（语法错误）
+        //var 1a=1;
+
+        //ReferenceError 引用一个不存在的变量时的错，将一个值分配给无法分配的对象
+
+        //RangeError
+
+        //TypeError 类型出错 变量或者参数不是预期类型
+        //var o={} ;o.test();
+
+        //throw {name:1};
+
+        //自定义错误
+        function UserError(message){
+            this.message=message;
+            this.name="userError";
+
+        }
+
+        UserError.prototype=new Error();//对象继承
+        UserError.prototype.constructor=UserError;
+
+
+        UserError.prototype.toString = function (){
+            return this.name + ': "' + this.message + '"';
+        }
+
+        var userError=new UserError("出错了！");
+        console.dir(userError);
+        throw userError;
+        //throw new Error("出错了！");
+
+
+        //throw //创建或抛出异常
+
+        //throw exception 字符串，数字，对象或者逻辑值
+
+        var a={
+            message:"对象出错了",
+            valueOf:function(){
+                return this.message;
+            },
+            toString:function(){
+                return this.message;
+            }
+        }
+
+        throw a;
+
+
+
+
+    </script>
+</body>
+</html>
