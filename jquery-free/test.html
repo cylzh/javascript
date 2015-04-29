@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //test bind  call,apply
+
+        var name="李四"
+        var a={
+            name:"张三",
+            say:function(){
+               console.log(this.name)
+            }
+        }
+
+        //采用bind
+        var tt= a.say.bind(window);//返回的是函数
+        tt();
+
+        //在全局里面调用
+        var t1= a.say;
+        t1();
+
+        //通过对象调用
+        a.say();
+
+    </script>
+</body>
+</html>

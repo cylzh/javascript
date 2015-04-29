@@ -3,8 +3,67 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="../lib/jquery-1.11.2.js"></script>
 </head>
 <body>
+    <script>
+        function isFunction(obj){
+            return Object.prototype.toString.call(obj)=="[object Function]";
+        }
 
+        function ajax(opt){
+            var xhr=XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        isFunction(opt.success) && opt.success(xhr.responseXML);
+                        console.dir(xhr);
+                        console.log(xhr.getResponseHeader('Content-Type'));
+                    }else{
+                        isFunction(opt.error) && opt.error();
+                    }
+                }
+            };
+
+            xhr.open(opt.type||"GET",opt.url,opt.async||true);
+            xhr.setRequestHeader("Content-Type","application/javascript");
+            xhr.send(opt.data);//send只有在post方式下才有用,get方式下需要把参数添加到url后
+            return xhr;
+        }
+
+       function get(opt){
+           opt.type="get";
+           return ajax(opt);
+       }
+
+        function post(opt){
+            opt.type="post";
+            return ajax(opt);
+        }
+
+
+        ajax({
+            type:"post",
+            url:"../lib/aQuery.js",
+            data:{name:"1111"} ,
+            success:function(data){
+                console.log(data);
+            },
+            error:function(){
+                console.log("异常");
+            }
+        });
+
+        get({
+            url:"../lib/aQuery.js",
+            success:function(data){
+               console.log("请求成功")
+            }
+        })
+
+
+        //
+    </script>
 </body>
 </html>
