@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+          var test={
+              name:(function(){console.log(111)})()
+
+          }
+
+         //提前声明
+         /* var a=1;
+          function b(){
+              if(!a){
+                  var a=2;
+              }
+              console.log(a)
+          }*/
+
+          //作用域链
+       /*   var a=1;
+          function b(){
+              (function(){
+                  console.log(a)
+                  if(!a){
+                      var a=2;
+                  }
+              })();
+              console.log(a)
+          }
+        b()*/
+
+
+
+          var a = 1;
+          var x = function (){
+              console.log(a);
+          };
+
+         /* function f(){
+              var a = 2;
+              function x(){
+                  console.log(a);
+              }
+              x();
+          }*/
+
+         /* function f(){
+              var a=2;
+              x();
+          }
+
+          f()
+*/
+
+         /* var x = function (){
+              console.log(a);
+          };
+
+          function y(f){
+              var a = 2;
+              f();
+          }
+
+          y(x)*/
+
+
+        /*  var x = function (a){
+              console.log(a);
+          };
+          function y(f){
+              var a = 2;
+              f(a);
+          }
+          y(x)*/
+
+
+
+          //函数的参数传递 (值传递，对于对象的属性来说是按照指针传递的)
+          var p = 2;
+
+          function f(p){
+              p = 3;
+          }
+
+          f(p);
+          p // 2
+
+          // 修改复合类型的参数值
+          var o = [1,2,3];
+
+          function f1(o){
+              o = [2,3,4];
+          }
+
+          f1(o);
+          o // [1, 2, 3]
+
+          var obj={name:"张三"}
+          function f2(obj){
+              obj.name="李四"
+              obj={name:"李四",age:12}
+          }
+
+         f2(obj);
+
+         //值类型达到指针传递
+         var c=2;
+         function f3(x){
+             window[x]=3;
+         }
+
+         f3('c');
+
+
+         function f4(a,a){
+             console.log(a);
+         }
+
+         f4(1,2);
+         f4(1)
+
+
+          function f5(a,a){
+              console.log(arguments[0]);
+          }
+          f5(1,2)
+
+
+         //arguments对象 实参对象
+
+         function f6(){
+             console.dir(arguments);
+             //arguments.push(2);
+             console.dir(Array.prototype.slice.apply(arguments));
+             f7.apply(f6,arguments)
+         }
+
+         function f7(a,b,c){
+             console.log(a)
+         }
+         f6(1,2,3)
+
+
+        function f8(){
+            var a=1;
+            function f9(){
+                return a++;
+            }
+            return f9;
+        }
+
+        f8()();
+
+        //function a(){}() 函数表达式不能为空
+        //function (){}() 函数声明必须加上name
+        //(function(){})()正确的用法
+        //(function(){}())
+
+          (function(w){
+
+
+
+          }(typeof window!=="undefined"?window:this));
+
+        //eval
+        //eval参数如果不是字符串,直接返回s,否则直接执行语句，如果语句执行结果是一个值，返回此值，否则返回undefined
+        //不是字符串
+        console.log(eval(function a(){}));
+        console.log(eval("{url:\"1\"}"))
+
+
+        //字符串
+        console.log(eval('var a=1;'));
+        console.log(eval('function a(){console.log(1);return 1;}'));
+
+        console.log(eval(("{id:\"cnlei\", url:\"http://www.jb51.net\"}")));
+
+
+       /*   var strTEST="{id:\"cnlei\", url:\"http://www.jb51.net\"}";
+                  var objTEST=eval("("+strTEST+")"); //正确写法
+          var objTEST=eval(strTEST); //出错写法*/
+         // alert(objTEST.id+"n"+objTEST.url);
+    </script>
+</body>
+</html>
