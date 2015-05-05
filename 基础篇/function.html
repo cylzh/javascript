@@ -80,6 +80,8 @@
 
 
           //函数的参数传递 (值传递，对于对象的属性来说是按照指针传递的)
+
+          //ECMAScript在传递object as function parameter时候用的策略是 call by sharing , 传递进来的是 引用的拷贝，而不是引用本身
           var p = 2;
 
           function f(p){

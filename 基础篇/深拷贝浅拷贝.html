@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../lib/jquery-1.11.2.js"></script>
+</head>
+<body>
+    <script>
+        //值类型复制。
+        var a=1;
+        var b=a;//直接复制的值
+        b++;
+        console.log(a);
+
+        //引用类型复制的是指针
+        var obj5=obj2;//复制的是地址
+        obj5=true;
+        console.log(obj2)//为何值，为啥?
+
+        //如果是值类型则是简单的数值拷贝
+        var obj={name:"张三"};
+        var obj1={};
+        obj1.name=obj.name;
+        obj1.name="李四";
+        console.log(obj.name)
+
+
+        //如果是对象的属性是对象或者数组。
+        var obj2={info:{name:"张三"},name:1};
+        var obj3=obj2;
+        obj3.info.name="李四";
+        console.log(obj2.info);
+
+
+        //拷贝 何为拷贝.是对数据进行备份
+
+        //深拷贝 不仅克隆基本类型，对象也复制，也就是完全产生一个新的对象
+        //
+        //浅拷贝 只克隆对象的基本类型
+
+        function deepExtend(deep,obj){
+            var obj1={};
+            var src;
+            if(typeof deep!="boolean"){
+                obj=deep;
+                deep=true;
+            }
+
+            for(var name in obj){
+                src=obj[name];
+                if(deep && typeof src=="object"){
+                    obj1[name]=deepExtend(deep,src);
+                }else{
+                    obj1[name]=obj[name];
+                }
+            }
+
+            return obj1;
+        }
+
+     var obj4=deepExtend(true,obj2)
+
+    </script>
+</body>
+</html>

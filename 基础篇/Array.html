@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <textarea name="yzyq"></textarea>
+    <script>
+        //定义
+        var a=[1,2];
+        var a1=new Array();
+        var a2=new Array(10);
+        var a3=new Array(1,2,3);
+        var a4=new Array([1]);
+        var a5=new Array({})
+
+
+        //对象方法
+         Array.isArray(a);
+
+        //实例方法
+        console.log(a.toString());
+        console.log(a.valueOf());
+
+        var obj={
+            name:1,
+            length:0,
+            push:[].push
+        }
+        obj.push({age:2});
+        console.log(obj)
+
+        var observe={
+             callback:[],
+             add:function(fn){
+                this.callback.push(fn);
+             },
+             fire:function(){
+                 var item;
+                   while(item=this.callback.shift()){
+                       item();
+                   }
+             }
+        }
+
+        observe.add(function(){
+            console.log(1)
+        })
+
+        observe.add(function(){
+            console.log(1)
+        })
+
+        observe.fire()
+
+
+    </script>
+</body>
+</html>

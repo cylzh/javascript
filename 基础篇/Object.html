@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+
+        //
+        new Object();
+        new Object(1);//返回的是包装对象
+
+        //Object上部署方法
+        Object.test=function(){
+            console.log(test);
+        }
+        Object.prototype.sayHello=function(){
+            console.log(this)
+        }
+
+
+        "1".sayHello();
+        ({}).sayHello();
+        [].sayHello();
+        (1).sayHello();
+
+        //Object.keys(),Object.getOwnPrototypeNames返回属性名集合。区别，一个不包括不可枚举的属性，一个包括不可枚举的属性
+
+
+        //Object方法
+
+        //Object() 如果是原始值，返回包装对象，如果参数是一个对象，它总返回原对象
+        function isObject(value) {
+            return value === Object(value);
+        }
+
+        console.log(isObject(1));
+        console.log(isObject("1"));
+        console.log(isObject(true));
+        console.log(isObject([]));
+        console.log(isObject({}));
+        console.log(isObject(function test(){}));
+
+        //对象的属性模型 每一个属性都有一个对应的attributes对象
+        var o = { p: 'a' };
+        Object.getOwnPropertyDescriptor(o, 'p');//读取o对象的p属性的attribute对象
+
+
+        //测试for in 是否会遍历出对象继承属性。
+        function test(){
+            this.name="1";
+            this.age=2;
+        }
+
+        test.prototype.say=function(){
+
+        }
+        var t=new test();
+        console.log(t)
+        for(var name in t){
+            console.log(name);
+        }
+
+
+
+
+    </script>
+</body>
+</html>
