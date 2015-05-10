@@ -6,27 +6,19 @@
 </head>
 <body>
 <script>
-
-
-   
-    　　var x;
-    　　delete x; // 语法错误
+    var x;
+    delete x; // 语法错误
 
     "use strict";
     //构造函数，生成对象的模版
     //构造函数与函数的区别，是在调用时。
 
-    //
     function Fubar1() {
-        'use strict'
-
+       'use strict';
         this._foo = 1;
         this._bar = 2;
     }
-
-
     new Fubar1();
-
     function Fubar() {
         if (!(this instanceof Fubar)) {
             return new Fubar();
@@ -34,6 +26,7 @@
         this.__name = "张三";
         this._age = 20;
     }
+    Fubar();
 
 
     //自己实现bind方法
@@ -56,17 +49,17 @@
     }
 
     var testbind = o.test.bind1(this, 2);
-    var testbind1 = o.test.bind(this, 2);
+    var testbind1 = o.test.bind(this);
 
 
     //bind结合call使用
-
-    [1,2,3].slice(1,2);
-    Array.prototype.slice.call([1,2,3],1,2);
+    [1, 2, 3].slice(1, 2);
+    Array.prototype.slice.call([1, 2, 3], 1, 2);
 
     //call 实际上是调用Function.prototype.call
 
-    var slice=Function.prototype.call.bind(Array.prototype.slice);
+    var slice = Function.prototype.call.bind1(Array.prototype.slice);
+
 
 </script>
 </body>
