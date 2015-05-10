@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../lib/jquery-1.11.2.js"></script>
+</head>
+<body>
+    <a href="test1.html?t=中国">春节</a>
+    <script>
+        //url组成 host + path + queryString +
+
+        //RFC1738做了硬性规定 url"只有字母和数字[0-9a-zA-Z]、一些特殊符号"$-_.+!*'(),"[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL。"
+
+
+        //由浏览器发出请求
+
+        //直接在地址栏输入
+        //情况1
+        //  直接在地址栏中输入http://zh.wikipedia.org/wiki/春节
+        //  ie变成 http://zh.wikipedia.org/wiki/%E6%98%A5%E8%8A%82
+        //chrome %E6%98%A5%E7%AF%80
+        //网址的路径编码采用的是utf-8
+        //改变编码方式也是无效的 %E6%98%A5%E8%8A%82
+
+        //情况2
+        //查询字符串中包含中文 操作系统的默认编码
+        //http://www.baidu.com/s?wd=春节
+        //wd=%E6%98%A5%E8%8A%82
+
+
+        //情况3 在页面中以get方式生成的中文
+        //是根据按照页面的编码方式
+        //%D6%D0%B9%FA
+
+        //ajax调用的url包含汉字
+        //网页里的form编码其实不完全取决于网页编码，
+        // form标记中有一个accept-charset属性，在非ie浏览器种，如果将其赋值(比如accept-charset="UTF-8")，则表单会按照这个值表示的编码方式进行提交。
+
+        $.ajax({
+            url:"/test1.html?t= 春节",
+            type:"get",
+            success:function(){
+                console.log(1)
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        //原型链
+
+        //原型跟原型链是js实现继承的一种模式
+        //原型链形成靠的的是隐式的__proto__,而非prototype.
+        function animal(){}
+        function dog(){}
+        animal.price=20;
+        dog.prototype=animal;
+        var test=new dog();
+        console.log(dog.price);
+        console.log(test.price);
+
+        //每个对象都有一个__proto__指向原型对象。函数比较特殊，它还有个prototype，指向protoype对象，它用来给实例对象提供属性和方法，它也被称为实例对象的原型。
+        //原型对象又是一个对象，它又有一个__proto__指向原型对象，依此类推，直到Object.prototype.__proto__
+
+
+
+         Object.create=function(o){
+                function F(){};
+                F.prototype=o;
+                return new F();
+        }
+
+        var o={a:1}
+        var o1=Object.create(o);
+
+        o.a=2;
+
+    </script>
+</body>
+</html>
