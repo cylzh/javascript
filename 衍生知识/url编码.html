@@ -46,5 +46,77 @@
 
         })
     </script>
+
+
+
+
+
+    <script>
+        //URL只能使用英文字母、阿拉伯数字和某些标点符号，不能使用其他文字和符号
+
+        //1.情况1 test/urlEncode/中国
+
+        //所有浏览器都一致，utf-8编码
+
+        //2.情况2 test/urlEncode/中国?test=中国
+
+        //非ie采用的是utf-8编码,ie采用的是gb2312
+
+        //3. get方式生成url 。都是采用utf-8  传递，ie 依赖于服务端的编码
+
+        //4 ajax
+
+
+        /*最好的解决就是在客户端采用一样的编码方式*/
+        //escape() 不对+进行编码，如果说我输入了+，如果通过此编码方式，到后台会变成空格
+
+        //encodeURI 对一些特殊符号不进行"; / ? : @ & = + $ , #" 对url整体进行编码，url中包含的一些特殊符号不会进行编码
+
+        //encodeURIComponent  它用于对URL的组成部分进行个别编码，而不用于对整个URL进行编码。
+
+
+        //form表单提交
+
+        /*
+         *只会提交成功控件（带name属性的）
+         *
+         * checkbox与radio如果被选中，但没有value的话，会以on作为value值
+         *
+         *
+         * 浏览器如何处理表单数据
+         *1.识别所有的控件
+         *2.对前面的数据根据form的enctype进行编码 (enctype application/x-www-form-urlencoded)
+         *3.提交数据
+         *
+         * get
+         *   把窗体数据转换成一个字符串，然后拼接到url后面
+         *
+         * post
+         *   把form数据分装到http body中
+         *
+         *
+         * */
+
+
+        /*
+         * 多个submit按钮
+         *
+         * */
+
+
+        /*
+         * 文件上传 类型multipart/form-data 请求体的内容以这个标记来分开boundary分隔参数
+         * */
+
+
+        /*
+         * F5刷新问题
+         *
+         * 1.两种解决方案，post-redirect-get
+         *
+         * 2.ajax方式
+         *
+         * */
+    </script>
 </body>
 </html>
