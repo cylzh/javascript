@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="clickDiv">
+    <p id="clickP">Click Me</p>
+</div>
+
+
+<script>
+    var div = document.createElement("div");
+    div.id = "div1";
+    div.innerHTML = "11111";
+    document.body.appendChild(div);
+
+
+    //addEventListener 如果添加同一个事件监听函数，则只会执行一次
+    // addEventListener(type,listener[,useCapture]); 新版浏览器中第三个参数默认值为false
+
+    //优点能绑定多个事件，能指定事件是在冒泡还是捕获阶段执行，
+  /*  div.addEventListener("click", test, true);
+
+    div.addEventListener("click", test, false);
+
+    //如果说我现在需要传递一个参数
+    div.addEventListener("click", function (e) {
+        test(e)
+
+    }, false);*/
+
+    //
+    //div.removeEventListener('click',test,false);
+
+/*    //dispatchEvent触发指定的事件
+    var event=new Event("click");
+    var a=div.dispatchEvent(event);
+    console.log(a);*/
+
+    function test(e) {
+        console.log(this);
+    }
+
+
+    //监听函数
+    //html的on属性
+
+   /* div.onclick=function(){
+        console.log(1);
+    }*/
+
+    div.onclick=test;
+
+    div.setAttribute("onclick","console.log(this)")
+
+
+    //this的指向
+
+  /*  EventTarget.addEventListener=function(type,listener,useCapture){
+        if(EventTarget.addEventListener){
+            this.addEventListener(type,listener,useCapture);
+        }else if(EventTarget.attachEvent){
+            this.attachEvent("on"+type,listener);
+        }else{
+            this["on"+type]=listener;
+        }
+    };
+
+    //事件流
+
+    var phases = {
+        1: 'capture',
+        2: 'target',
+        3: 'bubble'
+    };
+
+    var div1 = document.getElementById('clickDiv');
+    var p = document.getElementById('clickP');
+
+    div1.addEventListener('click', callback, true);
+    p.addEventListener('click', callback, true);
+    div1.addEventListener('click', callback, false);
+    p.addEventListener('click', callback, false);
+
+    div1.onclick=function(event){
+        var tag = event.currentTarget.tagName;
+        var phase = phases[event.eventPhase];
+        console.log("Tag1: '" + tag + "'. EventPhase: '" + phase + "'");
+    }
+
+    function callback(event) {
+        var tag = event.currentTarget.tagName;
+        var phase = phases[event.eventPhase];
+        console.log("Tag: '" + tag + "'. EventPhase: '" + phase + "'");
+    }
+*/
+    var div1 = document.getElementById('clickDiv');
+    var p = document.getElementById('clickP');
+
+    div1.addEventListener("click",function(e){
+         if(e.target.tagName.toLowerCase()=="p"){
+             console.log("p")
+         }
+
+    },false);
+
+</script>
+</body>
+</html>
